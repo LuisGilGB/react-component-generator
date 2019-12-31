@@ -2,7 +2,7 @@
   "name": "react-component-generator",
   "version": "0.1.0",
   "description": "CLI tool that generates the scaffolding for a React component library",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/LuisGilGB/react-component-generator/issues"
   },
-  "homepage": "https://github.com/LuisGilGB/react-component-generator#readme"
+  "homepage": "https://github.com/LuisGilGB/react-component-generator#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "yargs": "^15.0.2"
+  }
 }
