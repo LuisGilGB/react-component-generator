@@ -1,1 +1,0 @@
-const msg = 'This is a mere message';

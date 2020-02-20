@@ -60,7 +60,7 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
-const customizeFile = file => file.replace('{{{MODULE_NAME}}}', moduleName).replace('{{{CMP_NAME}}}', cmpName);
+const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName);
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {
