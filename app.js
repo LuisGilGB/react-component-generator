@@ -48,10 +48,35 @@ const packageJson = {
     }
 }
 
+// Writes the package.json file for the new module.
 fs.writeFileSync(
     path.join(rootDir, 'package.json'),
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
+
+// Reads all the files in the template directory.
+fs.readdir(path.join(__dirname, './template'), (err, files) => {
+    if (err) {
+        console.error('An error happened while trying to read the directory files');
+        console.error(err);
+    } else {
+        console.log('The template files have been successfully read');
+        console.log(files);
+        // Writes the template files into the destination folder.
+        files.forEach(fileName => {
+            fs.readFile(path.join(__dirname, `./template/${fileName}`), (err, file) => {
+                if (err) {
+                    console.error(`An error happened while trying to read the file ${fileName}`);
+                    console.error(err);
+                } else {
+                    console.log('Will copy file');
+                    console.log(typeof file);
+                    fs.writeFileSync(path.join(rootDir, fileName), file);
+                }
+            });
+        })
+    }
+})
 
 const originalDirectory = process.cwd();
 process.chdir(rootDir);
