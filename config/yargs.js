@@ -1,11 +1,11 @@
 const opts = {
-    pkg: {
-        demand: true,
-        alias: 'p'
-    },
     name: {
         demand: true,
         alias: 'n'
+    },
+    dirname: {
+        demand: false,
+        alias: 'd'
     }
 }
 

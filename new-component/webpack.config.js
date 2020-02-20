@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: path.join(__dirname, "src/NewComponent.jsx"),
     output: {
-        library: 'new-component',
+        library: '@luisgilgb/new-component',
         libraryTarget: 'umd',
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),

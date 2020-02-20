@@ -1,17 +1,22 @@
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
+const {getLast} = require('@luisgilgb/js-utils');
 
 const argv = require('./config/yargs').argv;
 
-const {pkg, name: moduleName} = argv;
+const {name: moduleName, dirName: moduleDirName = getLast(moduleName.split('/'))} = argv;
 
-console.log(`Everything ready for the scaffolding of the new component ${moduleName} with package name ${pkg}`);
+const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
 
-const rootDir = path.resolve(pkg);
+const cmpName = getLast(moduleName.split('/')).split('-').map(s0 => capitalize(s0)).join('');
+
+console.log(`Everything ready for the scaffolding of the new component ${cmpName}, with the NodeJS module being named ${moduleName}, at the directory ${moduleDirName}`);
+
+const rootDir = path.resolve(moduleDirName);
 const TEMPLATE_DIR = path.join(__dirname, './template');
 
-fs.ensureDirSync(pkg);
+fs.ensureDirSync(moduleName);
 
 // Rutina para detener la creación en caso de que no sea seguro crearlo por conflictos
 // con archivos previamente existentes.
@@ -55,13 +60,7 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
-const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
-
-const customizeFile = file => {
-    const cmpName = moduleName.split('-').map(s0 => capitalize(s0)).join('');
-    
-    return file.replace('{{{MODULE_NAME}}}', moduleName).replace('{{{CMP_NAME}}}', cmpName);
-}
+const customizeFile = file => file.replace('{{{MODULE_NAME}}}', moduleName).replace('{{{CMP_NAME}}}', cmpName);
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {
