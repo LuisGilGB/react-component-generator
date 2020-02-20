@@ -83,10 +83,7 @@ const templateDirRecursiveStep = (srcPath, opts, files) => {
         if (dirItem.isFile()) {
             copyFile(nextPath);
         } else if (dirItem.isDirectory()) {
-            const destPath = path.join(rootDir, nextPath);
-            if (!fs.existsSync(destPath)){
-                fs.mkdirSync(destPath);
-            }
+            fs.ensureDirSync(path.join(rootDir, nextPath));
             readdir(nextPath, opts, templateDirRecursiveStep);
         }
     });
