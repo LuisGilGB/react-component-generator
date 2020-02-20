@@ -56,13 +56,13 @@ fs.writeFileSync(
 );
 
 const readdir = (srcPath, opts, filesCallback) => {
-    fs.readdir(`${TEMPLATE_DIR}/${srcPath}`, opts, (err, files) => {
+    fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {
         if (err) {
-            console.error('An error happened while trying to read the directory files');
+            console.error(`An error happened while trying to read the directory files at ${TEMPLATE_DIR}${srcPath}`);
             console.error(err);
         } else {
-            console.log('The template files have been successfully read');
-            console.log(files);
+            console.log(`The template files at ${TEMPLATE_DIR}${srcPath} have been successfully read`);
+            console.log(files.map(({name}) => name));
             filesCallback(srcPath, opts, files);
         }
     });
@@ -88,13 +88,12 @@ const templateDirRecursiveStep = (srcPath, opts, files) => {
 const copyFile = (filePath) => {
     // We pass the utf8 parameter as an encoding option param to return the file content
     // as a string.
-    fs.readFile(path.join(`${TEMPLATE_DIR}/${filePath}`), 'utf8', (err, file) => {
+    fs.readFile(path.join(`${TEMPLATE_DIR}${filePath}`), 'utf8', (err, file) => {
         if (err) {
             console.error(`An error happened while trying to read the file ${fileName}`);
             console.error(err);
         } else {
-            console.log('Will copy file');
-            console.log(typeof file);
+            console.log(`Will copy the file ${filePath}`);
             fs.writeFileSync(path.join(rootDir, filePath), file);
         }
     });
