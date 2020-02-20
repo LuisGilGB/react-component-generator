@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    entry: path.join(__dirname, "src/Component.jsx"),
+    entry: path.join(__dirname, "src/{{{CMP_NAME}}}.jsx"),
     output: {
-        library: 'react-component',
+        library: '{{{MODULE_NAME}}}',
         libraryTarget: 'umd',
         filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),

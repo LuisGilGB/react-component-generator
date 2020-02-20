@@ -4,9 +4,9 @@ const os = require('os');
 
 const argv = require('./config/yargs').argv;
 
-const {pkg, name} = argv;
+const {pkg, name: moduleName} = argv;
 
-console.log(`Everything ready for the scaffolding of the new component ${name} with package name ${pkg}`);
+console.log(`Everything ready for the scaffolding of the new component ${moduleName} with package name ${pkg}`);
 
 const rootDir = path.resolve(pkg);
 const TEMPLATE_DIR = path.join(__dirname, './template');
@@ -25,7 +25,7 @@ console.log(`A new React component package will be created at ${rootDir}`);
 console.log();
 
 const packageJson = {
-    name: pkg,
+    name: moduleName,
     version: '0.1.0',
     devDependencies: {
         "@babel/cli": "^7.7.4",
@@ -54,6 +54,14 @@ fs.writeFileSync(
     path.join(rootDir, 'package.json'),
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
+
+const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
+
+const customizeFile = file => {
+    const cmpName = moduleName.split('-').map(s0 => capitalize(s0)).join('');
+    
+    return file.replace('{{{MODULE_NAME}}}', moduleName).replace('{{{CMP_NAME}}}', cmpName);
+}
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {
@@ -94,7 +102,7 @@ const copyFile = (filePath) => {
             console.error(err);
         } else {
             console.log(`Will copy the file ${filePath}`);
-            fs.writeFileSync(path.join(rootDir, filePath), file);
+            fs.writeFileSync(path.join(rootDir, filePath), customizeFile(file));
         }
     });
 }
