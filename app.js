@@ -16,7 +16,7 @@ console.log(`Everything ready for the scaffolding of the new component ${cmpName
 const rootDir = path.resolve(moduleDirName);
 const TEMPLATE_DIR = path.join(__dirname, './template');
 
-fs.ensureDirSync(moduleName);
+fs.ensureDirSync(moduleDirName);
 
 // Rutina para detener la creación en caso de que no sea seguro crearlo por conflictos
 // con archivos previamente existentes.
