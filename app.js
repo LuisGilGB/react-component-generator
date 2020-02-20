@@ -55,7 +55,7 @@ fs.writeFileSync(
 );
 
 // Reads all the files in the template directory.
-fs.readdir(path.join(__dirname, './template'), (err, files) => {
+fs.readdir(path.join(__dirname, './template'), {withFileTypes : true}, (err, files) => {
     if (err) {
         console.error('An error happened while trying to read the directory files');
         console.error(err);
@@ -63,8 +63,11 @@ fs.readdir(path.join(__dirname, './template'), (err, files) => {
         console.log('The template files have been successfully read');
         console.log(files);
         // Writes the template files into the destination folder.
-        files.forEach(fileName => {
-            fs.readFile(path.join(__dirname, `./template/${fileName}`), (err, file) => {
+        files.forEach(dirItem => {
+            const {name: fileName} = dirItem;
+            // We pass the utf8 parameter as an encoding option param to return the file content
+            // as a string.
+            dirItem.isFile() && fs.readFile(path.join(__dirname, `./template/${fileName}`), 'utf8', (err, file) => {
                 if (err) {
                     console.error(`An error happened while trying to read the file ${fileName}`);
                     console.error(err);
