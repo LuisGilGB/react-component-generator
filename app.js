@@ -55,27 +55,32 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
-const readdir = (srcPath, ...opts, filesCallback) => {
-    fs.readdir(`${TEMPLATE_DIR}/${srcPath}`, ...opts, (err, files) => {
+const readdir = (srcPath, opts, filesCallback) => {
+    fs.readdir(`${TEMPLATE_DIR}/${srcPath}`, opts, (err, files) => {
         if (err) {
             console.error('An error happened while trying to read the directory files');
             console.error(err);
         } else {
             console.log('The template files have been successfully read');
             console.log(files);
-            filesCallback(srcPath, ...opts, files);
+            filesCallback(srcPath, opts, files);
         }
     });
 }
 
-const templateDirRecursiveStep = (srcPath, ...opts, files) => {
+const templateDirRecursiveStep = (srcPath, opts, files) => {
     // Writes the template files into the destination folder.
     files.forEach(dirItem => {
         const {name} = dirItem;
+        const nextPath = `${srcPath}/${name}`;
         if (dirItem.isFile()) {
-            copyFile(`${srcPath}/${name}`);
+            copyFile(nextPath);
         } else if (dirItem.isDirectory()) {
-            readdir(`${srcPath}/${name}`, ...opts, templateDirRecursiveStep);
+            const destPath = path.join(rootDir, nextPath);
+            if (!fs.existsSync(destPath)){
+                fs.mkdirSync(destPath);
+            }
+            readdir(nextPath, opts, templateDirRecursiveStep);
         }
     });
 }
