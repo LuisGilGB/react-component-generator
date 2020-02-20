@@ -9,6 +9,7 @@ const {pkg, name} = argv;
 console.log(`Everything ready for the scaffolding of the new component ${name} with package name ${pkg}`);
 
 const rootDir = path.resolve(pkg);
+const TEMPLATE_DIR = path.join(__dirname, './template');
 
 fs.ensureDirSync(pkg);
 
@@ -54,32 +55,48 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
+const readdir = (srcPath, ...opts, filesCallback) => {
+    fs.readdir(`${TEMPLATE_DIR}/${srcPath}`, ...opts, (err, files) => {
+        if (err) {
+            console.error('An error happened while trying to read the directory files');
+            console.error(err);
+        } else {
+            console.log('The template files have been successfully read');
+            console.log(files);
+            filesCallback(srcPath, ...opts, files);
+        }
+    });
+}
+
+const templateDirRecursiveStep = (srcPath, ...opts, files) => {
+    // Writes the template files into the destination folder.
+    files.forEach(dirItem => {
+        const {name} = dirItem;
+        if (dirItem.isFile()) {
+            copyFile(`${srcPath}/${name}`);
+        } else if (dirItem.isDirectory()) {
+            readdir(`${srcPath}/${name}`, ...opts, templateDirRecursiveStep);
+        }
+    });
+}
+
+const copyFile = (filePath) => {
+    // We pass the utf8 parameter as an encoding option param to return the file content
+    // as a string.
+    fs.readFile(path.join(`${TEMPLATE_DIR}/${filePath}`), 'utf8', (err, file) => {
+        if (err) {
+            console.error(`An error happened while trying to read the file ${fileName}`);
+            console.error(err);
+        } else {
+            console.log('Will copy file');
+            console.log(typeof file);
+            fs.writeFileSync(path.join(rootDir, filePath), file);
+        }
+    });
+}
+
 // Reads all the files in the template directory.
-fs.readdir(path.join(__dirname, './template'), {withFileTypes : true}, (err, files) => {
-    if (err) {
-        console.error('An error happened while trying to read the directory files');
-        console.error(err);
-    } else {
-        console.log('The template files have been successfully read');
-        console.log(files);
-        // Writes the template files into the destination folder.
-        files.forEach(dirItem => {
-            const {name: fileName} = dirItem;
-            // We pass the utf8 parameter as an encoding option param to return the file content
-            // as a string.
-            dirItem.isFile() && fs.readFile(path.join(__dirname, `./template/${fileName}`), 'utf8', (err, file) => {
-                if (err) {
-                    console.error(`An error happened while trying to read the file ${fileName}`);
-                    console.error(err);
-                } else {
-                    console.log('Will copy file');
-                    console.log(typeof file);
-                    fs.writeFileSync(path.join(rootDir, fileName), file);
-                }
-            });
-        })
-    }
-})
+readdir('', {withFileTypes : true}, templateDirRecursiveStep);
 
 const originalDirectory = process.cwd();
 process.chdir(rootDir);
