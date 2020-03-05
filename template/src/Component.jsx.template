@@ -2,10 +2,12 @@
 import React from 'react';
 import './{{{CMP_NAME}}}.css';
 
+const DEFAULT_CLASS_NAME = '{{{UNSCOPED_MODULE_NAME}}}';
+
 const {{{CMP_NAME}}} = props => {
     const {
         children,
-        className,
+        className = '',
         style,
         onClick,
         ...otherProps
@@ -14,9 +16,9 @@ const {{{CMP_NAME}}} = props => {
     return (
         <div
             {...otherProps}
-            className={className}
-            onClick={onClick}
+            className={`${DEFAULT_CLASS_NAME} ${className}`.trim()}
             style={style}
+            onClick={onClick}
         >
             {children}
         </div>

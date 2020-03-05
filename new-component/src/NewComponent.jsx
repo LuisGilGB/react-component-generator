@@ -2,10 +2,12 @@
 import React from 'react';
 import './NewComponent.css';
 
+const DEFAULT_CLASS_NAME = 'new-component';
+
 const NewComponent = props => {
     const {
         children,
-        className,
+        className = '',
         style,
         onClick,
         ...otherProps
@@ -14,9 +16,9 @@ const NewComponent = props => {
     return (
         <div
             {...otherProps}
-            className={className}
-            onClick={onClick}
+            className={`${DEFAULT_CLASS_NAME} ${className}`.trim()}
             style={style}
+            onClick={onClick}
         >
             {children}
         </div>

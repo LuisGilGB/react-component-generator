@@ -61,7 +61,7 @@ fs.writeFileSync(
 );
 
 const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
-const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName);
+const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName).split('{{{UNSCOPED_MODULE_NAME}}}').join(moduleDirName);
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {
@@ -98,7 +98,7 @@ const copyFile = (filePath) => {
             console.error(`An error happened while trying to read the file ${filePath}`);
             console.error(err);
         } else {
-            const destinationPath = removeTemplateSuffix(filePath.replace('Component.jsx', `${cmpName}.jsx`));
+            const destinationPath = removeTemplateSuffix(filePath.replace('Component.', `${cmpName}.`));
             if (destinationPath === filePath) {
                 console.log(`Will copy the file ${filePath}`);
             } else {
