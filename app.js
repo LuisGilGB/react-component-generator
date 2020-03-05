@@ -60,6 +60,7 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
+const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
 const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName);
 
 const readdir = (srcPath, opts, filesCallback) => {
@@ -94,11 +95,16 @@ const copyFile = (filePath) => {
     // as a string.
     fs.readFile(path.join(`${TEMPLATE_DIR}${filePath}`), 'utf8', (err, file) => {
         if (err) {
-            console.error(`An error happened while trying to read the file ${fileName}`);
+            console.error(`An error happened while trying to read the file ${filePath}`);
             console.error(err);
         } else {
-            console.log(`Will copy the file ${filePath}`);
-            fs.writeFileSync(path.join(rootDir, filePath), customizeFile(file));
+            const destinationPath = removeTemplateSuffix(filePath.replace('Component.jsx', `${cmpName}.jsx`));
+            if (destinationPath === filePath) {
+                console.log(`Will copy the file ${filePath}`);
+            } else {
+                console.log(`File ${destinationPath} will be generated from ${filePath}`);
+            }
+            fs.writeFileSync(path.join(rootDir, destinationPath), customizeFile(file));
         }
     });
 }
