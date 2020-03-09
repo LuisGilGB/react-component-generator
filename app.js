@@ -32,6 +32,20 @@ console.log();
 const packageJson = {
     name: moduleName,
     version: '0.1.0',
+    main: "dist/index.js",
+    scripts: {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "demostart": "webpack-dev-server --mode development --config webpack.demo.config.js",
+        "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
+        "build": "webpack --mode production",
+        "clean-install": "rm -rf ./node_modules && npm install",
+        "clean-build": "rm -rf ./dist && npm run build",
+        "ibuild": "npm run clean-install && npm run clean-build",
+        "publish-pro": "npm run ibuild && npm publish --access public"
+    },
+    files: [
+        "/dist"
+    ],
     devDependencies: {
         "@babel/cli": "^7.7.4",
         "@babel/core": "^7.6.4",

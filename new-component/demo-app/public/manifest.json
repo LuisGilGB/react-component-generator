@@ -1,6 +1,6 @@
 {
-  "short_name": "Container - Demo App",
-  "name": "Container (@luisgilgb/react-container) - Demo App",
+  "short_name": "NewComponent - Demo App",
+  "name": "NewComponent (@luisgilgb/new-component) - Demo App",
   "icons": [
     {
       "src": "favicon.ico",
