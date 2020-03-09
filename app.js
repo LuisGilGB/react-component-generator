@@ -58,9 +58,9 @@ const packageJson = {
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "style-loader": "^1.0.0",
-        "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.9",
-        "webpack-dev-server": "^3.9.0"
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3"
     },
     peerDependencies: {
         "react": "^16.8.6",
@@ -74,7 +74,14 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
+const formatDotPreffix = str => {
+    const segments = str.split('/');
+    const fileName = getLast(segments);
+    return fileName && fileName.startsWith('dot.') ? [...segments.slice(0,-1), fileName.slice(3)].join('/') : str;
+}
 const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
+const customizeFileName = str => str.replace('Component.', `${cmpName}.`);
+const formatFileName = str => formatDotPreffix(removeTemplateSuffix(customizeFileName(str)));
 const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName).split('{{{UNSCOPED_MODULE_NAME}}}').join(moduleDirName);
 
 const readdir = (srcPath, opts, filesCallback) => {
@@ -112,7 +119,7 @@ const copyFile = (filePath) => {
             console.error(`An error happened while trying to read the file ${filePath}`);
             console.error(err);
         } else {
-            const destinationPath = removeTemplateSuffix(filePath.replace('Component.', `${cmpName}.`));
+            const destinationPath = formatFileName(filePath);
             if (destinationPath === filePath) {
                 console.log(`Will copy the file ${filePath}`);
             } else {
