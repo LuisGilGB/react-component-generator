@@ -43,7 +43,7 @@ const packageJson = {
     main: "dist/index.js",
     scripts: {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "demostart": "webpack-dev-server --mode development --config webpack.demo.config.js",
+        "demo-start": "webpack-dev-server --mode development --config webpack.config.demo.js",
         "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
         "build": "webpack --mode production",
         "clean-install": "rm -rf ./node_modules && npm install",
