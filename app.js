@@ -16,6 +16,14 @@ console.log(`Everything ready for the scaffolding of the new component ${cmpName
 const rootDir = path.resolve(moduleDirName);
 const TEMPLATE_DIR = path.join(__dirname, './template');
 
+const FILE_ENCODINGS = {
+    png: 'base64',
+    ico: 'binary',
+    defaultEnc: 'utf8'
+}
+
+const getFileEncoding = filePath => FILE_ENCODINGS[getLast(filePath.split('.'))] || FILE_ENCODINGS.defaultEnc;
+
 fs.ensureDirSync(moduleDirName);
 
 // Rutina para detener la creación en caso de que no sea seguro crearlo por conflictos
@@ -114,7 +122,8 @@ const templateDirRecursiveStep = (srcPath, opts, files) => {
 const copyFile = (filePath) => {
     // We pass the utf8 parameter as an encoding option param to return the file content
     // as a string.
-    fs.readFile(path.join(`${TEMPLATE_DIR}${filePath}`), 'utf8', (err, file) => {
+    const fileEncoding = getFileEncoding(filePath);
+    fs.readFile(path.join(`${TEMPLATE_DIR}${filePath}`), fileEncoding, (err, file) => {
         if (err) {
             console.error(`An error happened while trying to read the file ${filePath}`);
             console.error(err);
@@ -122,10 +131,11 @@ const copyFile = (filePath) => {
             const destinationPath = formatFileName(filePath);
             if (destinationPath === filePath) {
                 console.log(`Will copy the file ${filePath}`);
+                fs.writeFileSync(path.join(rootDir, destinationPath), file, fileEncoding);
             } else {
                 console.log(`File ${destinationPath} will be generated from ${filePath}`);
+                fs.writeFileSync(path.join(rootDir, destinationPath), customizeFile(file), fileEncoding);
             }
-            fs.writeFileSync(path.join(rootDir, destinationPath), customizeFile(file));
         }
     });
 }
