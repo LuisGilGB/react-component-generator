@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../../src/NewComponent';
+import NewComponent from '../../src/NewComponent';
 import './DemoApp.css';
 
 function DemoApp() {

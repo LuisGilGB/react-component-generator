@@ -1,10 +1,10 @@
-# React Component
+# React NewComponent
 
-A component for React.
+A NewComponent component for React.
 
 ## Getting Started
 
-These instructions will let you use the component in your application.
+These instructions will let you use the NewComponent component in your application.
 
 ### Prerequisites
 
@@ -22,7 +22,7 @@ npm install <<<Your module's name>>>
 Then, in your application it should be enough to import the component as it is usually done in React:
 
 ```
-import Container from '<<<Your module's name>>>'
+import NewComponent from '<<<Your module's name>>>'
 ```
 
 ## Running the tests
@@ -41,7 +41,6 @@ TBD
 
 * [ReactJS](http://reactjs.org/) - The web framework used
 * [npm](https://www.npmjs.org/) - Dependency Management
-* [Sublime Text 3](https://www.sublimetext.com/) - Text editor for development
 
 ## Contributing
 
@@ -49,13 +48,13 @@ TBD
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/LuisGilGB/react-component/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/{{{GIT_USER}}}/new-component/tags).
 
 ## Authors
 
-* **[Luis Gil Gutiérrez de la Barreda](https://github.com/LuisGilGB)**
+* **[{{{AUTHOR}}}](https://github.com/{{{GIT_USER}}})**
 
-See also the list of [contributors](https://github.com/LuisGilGB/react-container/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/{{{GIT_USER}}}/new-component/contributors) who participated in this project.
 
 ## License
 
