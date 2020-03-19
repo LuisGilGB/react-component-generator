@@ -1,5 +1,5 @@
 {
-  "name": "react-component-generator",
+  "name": "@luisgilgb/react-component-generator",
   "version": "0.1.0",
   "description": "CLI tool that generates the scaffolding for a React component library",
   "main": "app.js",
