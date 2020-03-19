@@ -4,7 +4,9 @@
   "description": "CLI tool that generates the scaffolding for a React component library",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean-install": "rm -rf ./node_modules && npm install",
+    "publish-pro": "npm run clean-install && npm publish --access public"
   },
   "repository": {
     "type": "git",
