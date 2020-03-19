@@ -1,10 +1,10 @@
-# React {{{CMP_NAME}}}
+# React %CMP_NAME%
 
-A {{{CMP_NAME}}} component for React.
+A %CMP_NAME% component for React.
 
 ## Getting Started
 
-These instructions will let you use the {{{CMP_NAME}}} component in your application.
+These instructions will let you use the %CMP_NAME% component in your application.
 
 ### Prerequisites
 
@@ -22,7 +22,7 @@ npm install <<<Your module's name>>>
 Then, in your application it should be enough to import the component as it is usually done in React:
 
 ```
-import {{{CMP_NAME}}} from '<<<Your module's name>>>'
+import %CMP_NAME% from '<<<Your module's name>>>'
 ```
 
 ## Running the tests
@@ -48,13 +48,13 @@ TBD
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/{{{GIT_USER}}}/{{{UNSCOPED_MODULE_NAME}}}/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/%GIT_USER%/%UNSCOPED_MODULE_NAME%/tags).
 
 ## Authors
 
-* **[{{{AUTHOR}}}](https://github.com/{{{GIT_USER}}})**
+* **[%AUTHOR%](https://github.com/%GIT_USER%)**
 
-See also the list of [contributors](https://github.com/{{{GIT_USER}}}/{{{UNSCOPED_MODULE_NAME}}}/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/%GIT_USER%/%UNSCOPED_MODULE_NAME%/contributors) who participated in this project.
 
 ## License
 

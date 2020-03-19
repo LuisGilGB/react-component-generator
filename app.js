@@ -91,7 +91,10 @@ const formatDotPreffix = str => {
 const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
 const customizeFileName = str => str.replace('Component.', `${cmpName}.`);
 const formatFileName = str => formatDotPreffix(removeTemplateSuffix(customizeFileName(str)));
-const customizeFile = file => file.split('{{{MODULE_NAME}}}').join(moduleName).split('{{{CMP_NAME}}}').join(cmpName).split('{{{UNSCOPED_MODULE_NAME}}}').join(moduleDirName);
+const customizeFile = file => file
+                                .split('%MODULE_NAME%').join(moduleName)
+                                .split('%CMP_NAME%').join(cmpName)
+                                .split('%UNSCOPED_MODULE_NAME%').join(moduleDirName);
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {

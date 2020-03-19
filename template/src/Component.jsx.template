@@ -1,10 +1,10 @@
 //-RENAME:cmpName.jsx
 import React from 'react';
-import './{{{CMP_NAME}}}.css';
+import './%CMP_NAME%.css';
 
-const DEFAULT_CLASS_NAME = '{{{UNSCOPED_MODULE_NAME}}}';
+const DEFAULT_CLASS_NAME = '%UNSCOPED_MODULE_NAME%';
 
-const {{{CMP_NAME}}} = props => {
+const %CMP_NAME% = props => {
     const {
         children,
         className = '',
@@ -25,4 +25,4 @@ const {{{CMP_NAME}}} = props => {
     );
 }
 
-export default {{{CMP_NAME}}};
+export default %CMP_NAME%;

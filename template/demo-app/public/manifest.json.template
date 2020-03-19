@@ -1,6 +1,6 @@
 {
-  "short_name": "{{{CMP_NAME}}} - Demo App",
-  "name": "{{{CMP_NAME}}} ({{{MODULE_NAME}}}) - Demo App",
+  "short_name": "%CMP_NAME% - Demo App",
+  "name": "%CMP_NAME% (%MODULE_NAME%) - Demo App",
   "icons": [
     {
       "src": "favicon.ico",

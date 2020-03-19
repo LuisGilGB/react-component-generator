@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Demo app created using create-react-app to test {{{CMP_NAME}}} component from {{{MODULE_NAME}}}"
+      content="Demo app created using create-react-app to test %CMP_NAME% component from %MODULE_NAME%"
     />
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
@@ -15,7 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>{{{CMP_NAME}}} ({{{MODULE_NAME}}}) - Demo App</title>
+    <title>%CMP_NAME% (%MODULE_NAME%) - Demo App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
