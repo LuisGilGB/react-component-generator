@@ -15,6 +15,7 @@ $ @luisgilgb/react-component-generator -n my-cmp
 
 This command will generate a component called MyCmp into a new my-cmp directory, in which you will find the following structure:
 
+```
 my-cmp
 ├── demo-app
 │   ├── .gitignore
@@ -41,6 +42,7 @@ my-cmp
 ├── README.md
 ├── webpack.config.demo.js
 └── webpack.config.js
+```
 
 Being the src/MyCmp.jsx the main file of your new component and the one and most likely the one that will contain most of the new development. Right after the scaffolding, its aspect is the following one:
 
