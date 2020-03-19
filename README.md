@@ -18,7 +18,6 @@ This command will generate a component called MyCmp into a new my-cmp directory,
 ```
 my-cmp
 ├── demo-app
-│   ├── .gitignore
 │   ├── public
 │   │   ├── favicon.ico
 │   │   ├── index.html
@@ -26,13 +25,14 @@ my-cmp
 │   │   ├── logo512.png
 │   │   ├── manifest.json
 │   │   └── robots.txt
-│   └── src
-│       ├── DemoApp.css
-│       ├── DemoApp.jsx
-│       ├── DemoApp.test.js
-│       ├── index.css
-│       ├── index.js
-│       └── serviceWorker.js
+│   ├── src
+│   │   ├── DemoApp.css
+│   │   ├── DemoApp.jsx
+│   │   ├── DemoApp.test.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   └── serviceWorker.js
+│   └── .gitignore
 ├── src
 │   ├── MyCmp.css
 │   └── MyCmp.jsx
