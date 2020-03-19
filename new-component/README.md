@@ -48,13 +48,13 @@ TBD
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/%GIT_USER%/new-component/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/LuisGilGB/new-component/tags).
 
 ## Authors
 
-* **[%AUTHOR%](https://github.com/%GIT_USER%)**
+* **[Luis Gil Gutiérrez de la Barreda](https://github.com/LuisGilGB)**
 
-See also the list of [contributors](https://github.com/%GIT_USER%/new-component/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/LuisGilGB/new-component/contributors) who participated in this project.
 
 ## License
 

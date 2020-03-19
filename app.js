@@ -5,7 +5,12 @@ const {getLast} = require('@luisgilgb/js-utils');
 
 const argv = require('./config/yargs').argv;
 
-const {name: moduleName, dirName: moduleDirName = getLast(moduleName.split('/'))} = argv;
+const {
+    name: moduleName,
+    dirName: moduleDirName = getLast(moduleName.split('/')),
+    author = 'author',
+    gitUser = 'gitUser'
+} = argv;
 
 const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
 
@@ -40,6 +45,7 @@ console.log();
 const packageJson = {
     name: moduleName,
     version: '0.1.0',
+    author,
     main: "dist/index.js",
     scripts: {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -94,7 +100,9 @@ const formatFileName = str => formatDotPreffix(removeTemplateSuffix(customizeFil
 const customizeFile = file => file
                                 .split('%MODULE_NAME%').join(moduleName)
                                 .split('%CMP_NAME%').join(cmpName)
-                                .split('%UNSCOPED_MODULE_NAME%').join(moduleDirName);
+                                .split('%UNSCOPED_MODULE_NAME%').join(moduleDirName)
+                                .split('%AUTHOR%').join(author)
+                                .split('%GIT_USER%').join(gitUser);
 
 const readdir = (srcPath, opts, filesCallback) => {
     fs.readdir(`${TEMPLATE_DIR}${srcPath}`, opts, (err, files) => {

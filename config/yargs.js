@@ -6,6 +6,14 @@ const opts = {
     dirname: {
         demand: false,
         alias: 'd'
+    },
+    author: {
+        demand: false,
+        alias: 'a'
+    },
+    "git-user": {
+        demand: false,
+        alias: 'g'
     }
 }
 
