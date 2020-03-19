@@ -1,5 +1,12 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+
+// `publicUrl` is just like `publicPath`, but we will provide it to our app
+// as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+// Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
+const publicUrl = '';
+
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, "demo-app/public/index.html"),
     filename: "./index.html"
@@ -20,11 +27,19 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackPlugin],
+    plugins: [
+        htmlWebpackPlugin,
+        new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
+            PUBLIC_URL: publicUrl
+        })
+    ],
     resolve: {
         extensions: [".js", ".jsx"]
     },
     devServer: {
-        port: 3000
+        clientLogLevel: 'none',
+        contentBase: path.join(__dirname, 'demo-app/public'),
+        hot: true,
+        port: 3030
     }
 };
