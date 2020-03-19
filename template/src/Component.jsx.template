@@ -1,4 +1,3 @@
-//-RENAME:cmpName.jsx
 import React from 'react';
 import './%CMP_NAME%.css';
 
