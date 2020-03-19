@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
+const chalk = require('chalk');
 const {getLast} = require('@luisgilgb/js-utils');
 
 const argv = require('./config/yargs').argv;
@@ -142,10 +143,10 @@ const copyFile = (filePath) => {
         } else {
             const destinationPath = formatFileName(filePath);
             if (destinationPath === filePath) {
-                console.log(`Will copy the file ${filePath}`);
+                console.log(`- Will copy the file ${chalk.green(filePath)}`);
                 fs.writeFileSync(path.join(rootDir, destinationPath), file, fileEncoding);
             } else {
-                console.log(`File ${destinationPath} will be generated from ${filePath}`);
+                console.log(`- File ${chalk.green(destinationPath)} will be generated from ${chalk.yellow(filePath)}`);
                 fs.writeFileSync(path.join(rootDir, destinationPath), customizeFile(file), fileEncoding);
             }
         }
