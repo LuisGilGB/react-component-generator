@@ -5,8 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean-install": "rm -rf ./node_modules && npm install",
-    "publish-pro": "npm run clean-install && npm publish --access public"
+    "rm-modules": "rm -rf ./node_modules",
+    "clean-install": "npm run rm-modules && npm install",
+    "clean-install-pro": "npm run rm-modules && npm install --production",
+    "publish-pro": "npm run clean-install-pro && npm publish --access public"
   },
   "repository": {
     "type": "git",
