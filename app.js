@@ -53,10 +53,14 @@ const packageJson = {
         "demo-start": "webpack-dev-server --mode development --config webpack.config.demo.js",
         "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
         "build": "webpack --mode production",
+        "rm-modules": "rm -rf ./node_modules",
+        "rm-dist": "rm -rf ./dist",
         "clean-install": "rm -rf ./node_modules && npm install",
+        "clean-install-pro": "rm -rf ./node_modules && npm install --production",
         "clean-build": "rm -rf ./dist && npm run build",
         "ibuild": "npm run clean-install && npm run clean-build",
-        "publish-pro": "npm run ibuild && npm publish --access public"
+        "ibuild-pro": "npm run clean-install-pro && npm run clean-build",
+        "publish-pro": "npm run ibuild-pro && npm publish --access public"
     },
     files: [
         "/dist"
