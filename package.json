@@ -3,11 +3,16 @@
   "version": "0.1.1",
   "description": "CLI tool that generates the scaffolding for a React component library",
   "main": "cli.js",
+  "bin": {
+    "react-component-generator": "./cli.js",
+    "rcgen": "./cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "rm-modules": "rm -rf ./node_modules",
+    "install-pro": "npm install --production",
     "clean-install": "npm run rm-modules && npm install",
-    "clean-install-pro": "npm run rm-modules && npm install --production",
+    "clean-install-pro": "npm run rm-modules && npm run install-pro",
     "publish-pro": "npm run clean-install-pro && npm publish --access public"
   },
   "repository": {
