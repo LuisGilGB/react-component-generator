@@ -10,7 +10,7 @@ $ npm install -g @luisgilgb/react-component-generator
 ## Usage
 
 ```console
-$ @luisgilgb/react-component-generator create -n my-cmp
+$ rcgen create -n my-cmp
 ```
 
 This command will generate a component called MyCmp into a new my-cmp directory, in which you will find the following structure:
@@ -87,7 +87,13 @@ You can use the following arguments:
 Example of these extra arguments usage:
 
 ```console
-$ @luisgilgb/react-component-generator create -n @luisgilgb/my-cmp -a "Luis Gil Gutiérrez de la Barreda" --git-user LuisGilGB
+$ rcgen create -n @luisgilgb/my-cmp -a "Luis Gil Gutiérrez de la Barreda" --git-user LuisGilGB
+```
+
+Notice that rcgen is just a shorter alias for calling the CLI tool, you can also run this generator by the react-component-generator command too:
+
+```console
+$ react-component-generator create -n @luisgilgb/my-cmp
 ```
 
 ## Running a demo
