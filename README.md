@@ -10,7 +10,7 @@ $ npm install -g @luisgilgb/react-component-generator
 ## Usage
 
 ```console
-$ @luisgilgb/react-component-generator -n my-cmp
+$ @luisgilgb/react-component-generator create -n my-cmp
 ```
 
 This command will generate a component called MyCmp into a new my-cmp directory, in which you will find the following structure:
@@ -87,7 +87,7 @@ You can use the following arguments:
 Example of these extra arguments usage:
 
 ```console
-$ @luisgilgb/react-component-generator -n @luisgilgb/my-cmp -a "Luis Gil Gutiérrez de la Barreda" --git-user LuisGilGB
+$ @luisgilgb/react-component-generator create -n @luisgilgb/my-cmp -a "Luis Gil Gutiérrez de la Barreda" --git-user LuisGilGB
 ```
 
 ## Running a demo
