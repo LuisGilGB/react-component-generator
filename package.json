@@ -1,12 +1,19 @@
 {
   "name": "@luisgilgb/react-component-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI tool that generates the scaffolding for a React component library",
-  "main": "app.js",
+  "main": "cli.js",
+  "bin": {
+    "react-component-generator": "./cli.js",
+    "rcgen": "./cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean-install": "rm -rf ./node_modules && npm install",
-    "publish-pro": "npm run clean-install && npm publish --access public"
+    "rm-modules": "rm -rf ./node_modules",
+    "install-pro": "npm install --production",
+    "clean-install": "npm run rm-modules && npm install",
+    "clean-install-pro": "npm run rm-modules && npm run install-pro",
+    "publish-pro": "npm run clean-install-pro && npm publish --access public"
   },
   "repository": {
     "type": "git",
