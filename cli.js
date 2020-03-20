@@ -62,8 +62,7 @@ const packageJson = {
         "clean-install-pro": "npm run rm-modules && npm install --production",
         "clean-build": "npm run rm-dist && npm run build",
         "ibuild": "npm run clean-install && npm run clean-build",
-        "ibuild-pro": "npm run clean-install-pro && npm run clean-build",
-        "publish-pro": "npm run ibuild-pro && npm publish --access public"
+        "publish-pro": "npm run ibuild && npm publish --access public"
     },
     files: [
         "/dist"
