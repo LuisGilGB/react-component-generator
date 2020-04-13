@@ -11,6 +11,7 @@ const argv = require('./config/yargs').argv;
 
 const {
     name: moduleName,
+    componentName,
     dirName: moduleDirName = getLast(moduleName.split('/')),
     author = 'author',
     gitUser = 'gitUser'
@@ -18,7 +19,7 @@ const {
 
 const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
 
-const cmpName = getLast(moduleName.split('/')).split('-').map(s0 => capitalize(s0)).join('');
+const cmpName = componentName || getLast(moduleName.split('/')).split('-').map(s0 => capitalize(s0)).join('');
 
 console.log(`Everything ready for the scaffolding of the new component ${cmpName}, with the NodeJS module being named ${moduleName}, at the directory ${moduleDirName}`);
 

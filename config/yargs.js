@@ -3,6 +3,10 @@ const opts = {
         demand: true,
         alias: 'n'
     },
+    "component-name": {
+        demand: false,
+        alias: 'N'
+    },
     dirname: {
         demand: false,
         alias: 'd'
