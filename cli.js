@@ -96,14 +96,14 @@ fs.writeFileSync(
     JSON.stringify(packageJson, null, 2) + os.EOL
 );
 
-const formatDotPreffix = str => {
+const formatDotPrefix = str => {
     const segments = str.split('/');
     const fileName = getLast(segments);
     return fileName && fileName.startsWith('dot.') ? [...segments.slice(0,-1), fileName.slice(3)].join('/') : str;
 }
 const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
 const customizeFileName = str => str.replace('Component.', `${cmpName}.`);
-const formatFileName = str => formatDotPreffix(removeTemplateSuffix(customizeFileName(str)));
+const formatFileName = str => formatDotPrefix(removeTemplateSuffix(customizeFileName(str)));
 const customizeFile = file => file
                                 .split('%MODULE_NAME%').join(moduleName)
                                 .split('%CMP_NAME%').join(cmpName)
