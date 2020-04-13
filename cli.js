@@ -53,7 +53,7 @@ const packageJson = {
     main: "dist/index.js",
     scripts: {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "demo-start": "webpack-dev-server --mode development --config webpack.config.demo.js",
+        "demo-start": "webpack-dev-server --mode development -r dotenv/config --config webpack.config.demo.js",
         "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
         "build": "webpack --mode production",
         "rm-modules": "rm -rf ./node_modules",
@@ -74,6 +74,7 @@ const packageJson = {
         "@babel/preset-react": "^7.8.3",
         "babel-loader": "^8.0.6",
         "css-loader": "^3.4.2",
+        "dotenv": "^8.2.0",
         "html-webpack-plugin": "^4.0.0-beta.14",
         "nodemon": "^2.0.2",
         "react": "^16.13.0",
@@ -91,10 +92,7 @@ const packageJson = {
 }
 
 // Writes the package.json file for the new module.
-fs.writeFileSync(
-    path.join(rootDir, 'package.json'),
-    JSON.stringify(packageJson, null, 2) + os.EOL
-);
+fs.writeJsonSync(path.join(rootDir, 'package.json'), packageJson, {spaces: 2});
 
 const formatDotPrefix = str => {
     const segments = str.split('/');
