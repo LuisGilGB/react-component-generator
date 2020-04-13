@@ -54,8 +54,8 @@ const packageJson = {
     scripts: {
         "test": "echo \"Error: no test specified\" && exit 1",
         "demo-start": "webpack-dev-server --mode development -r dotenv/config --config webpack.config.demo.js",
-        "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
-        "build": "webpack --mode production",
+        "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react -r dotenv/config",
+        "build": "webpack --mode production -r dotenv/config",
         "rm-modules": "rm -rf ./node_modules",
         "rm-dist": "rm -rf ./dist",
         "clean-install": "npm run rm-modules && npm install",
