@@ -16,13 +16,13 @@ This component is created for React JS, so you need to use it in a React applica
 Install this component as a dependency from npm.
 
 ```
-npm install <<<Your module's name>>>
+npm install %MODULE_NAME%
 ```
 
 Then, in your application it should be enough to import the component as it is usually done in React:
 
 ```
-import %CMP_NAME% from '<<<Your module's name>>>'
+import %CMP_NAME% from '%MODULE_NAME%'
 ```
 
 ## Running the tests

@@ -40,6 +40,6 @@ module.exports = {
         clientLogLevel: 'none',
         contentBase: path.join(__dirname, 'demo-app/public'),
         hot: true,
-        port: 3030
+        port: process.env.DEMO_PORT || 3000
     }
 };

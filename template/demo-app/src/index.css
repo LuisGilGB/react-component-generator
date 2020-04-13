@@ -1,8 +1,24 @@
+html {
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
+}
+
 body {
   margin: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
 }
 
 code {

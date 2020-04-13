@@ -11,6 +11,7 @@ const argv = require('./config/yargs').argv;
 
 const {
     name: moduleName,
+    componentName,
     dirName: moduleDirName = getLast(moduleName.split('/')),
     author = 'author',
     gitUser = 'gitUser'
@@ -18,7 +19,7 @@ const {
 
 const capitalize = str => str.length ? `${str.charAt(0).toUpperCase()}${str.substring(1)}` : str;
 
-const cmpName = getLast(moduleName.split('/')).split('-').map(s0 => capitalize(s0)).join('');
+const cmpName = componentName || getLast(moduleName.split('/')).split('-').map(s0 => capitalize(s0)).join('');
 
 console.log(`Everything ready for the scaffolding of the new component ${cmpName}, with the NodeJS module being named ${moduleName}, at the directory ${moduleDirName}`);
 
@@ -53,17 +54,16 @@ const packageJson = {
     main: "dist/index.js",
     scripts: {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "demo-start": "webpack-dev-server --mode development --config webpack.config.demo.js",
-        "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react",
-        "build": "webpack --mode production",
+        "demo-start": "webpack-dev-server --mode development -r dotenv/config --config webpack.config.demo.js",
+        "transpile": "babel src -d dist-transpiled --copy-files --presets=@babel/preset-env,@babel/preset-react -r dotenv/config",
+        "build": "webpack --mode production -r dotenv/config",
         "rm-modules": "rm -rf ./node_modules",
         "rm-dist": "rm -rf ./dist",
         "clean-install": "npm run rm-modules && npm install",
         "clean-install-pro": "npm run rm-modules && npm install --production",
         "clean-build": "npm run rm-dist && npm run build",
         "ibuild": "npm run clean-install && npm run clean-build",
-        "ibuild-pro": "npm run clean-install-pro && npm run clean-build",
-        "publish-pro": "npm run ibuild-pro && npm publish --access public"
+        "publish-pro": "npm run ibuild && npm publish --access public"
     },
     files: [
         "/dist"
@@ -75,6 +75,7 @@ const packageJson = {
         "@babel/preset-react": "^7.8.3",
         "babel-loader": "^8.0.6",
         "css-loader": "^3.4.2",
+        "dotenv": "^8.2.0",
         "html-webpack-plugin": "^4.0.0-beta.14",
         "nodemon": "^2.0.2",
         "react": "^16.13.0",
@@ -92,19 +93,16 @@ const packageJson = {
 }
 
 // Writes the package.json file for the new module.
-fs.writeFileSync(
-    path.join(rootDir, 'package.json'),
-    JSON.stringify(packageJson, null, 2) + os.EOL
-);
+fs.writeJsonSync(path.join(rootDir, 'package.json'), packageJson, {spaces: 2});
 
-const formatDotPreffix = str => {
+const formatDotPrefix = str => {
     const segments = str.split('/');
     const fileName = getLast(segments);
     return fileName && fileName.startsWith('dot.') ? [...segments.slice(0,-1), fileName.slice(3)].join('/') : str;
 }
 const removeTemplateSuffix = str => str.endsWith('.template') ? str.slice(0,-9) : str;
 const customizeFileName = str => str.replace('Component.', `${cmpName}.`);
-const formatFileName = str => formatDotPreffix(removeTemplateSuffix(customizeFileName(str)));
+const formatFileName = str => formatDotPrefix(removeTemplateSuffix(customizeFileName(str)));
 const customizeFile = file => file
                                 .split('%MODULE_NAME%').join(moduleName)
                                 .split('%CMP_NAME%').join(cmpName)
