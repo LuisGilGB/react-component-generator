@@ -10,6 +10,12 @@ $ npm install -g @luisgilgb/react-component-generator
 ## Usage
 
 ```console
+rcgen create -n @scope/my-cmp -N RealComponent -a "Author McAuthor" --git-user AuthorHasGitHub
+```
+
+Shorter version (without non required params):
+
+```console
 $ rcgen create -n my-cmp
 ```
 
@@ -80,6 +86,7 @@ export default MyCmp;
 
 You can use the following arguments:
 --name (-n) - The name of your future npm package. The only mandatory argument, the component name will be generated from it. You can scope it if you want too!
+--component-name (-N) - The name of the React component, so the jsx file, the component it exports and the CSS file will share this name. A component name will be automatically generated from the required name parameter if a component-name value is not provided.
 --dirname (-d) - The name of the directory created to contain the scaffolded files. A default dirname will be generated from name if this argument is not provided.
 --author (-a) - The author's name.
 --git-user (-g) - The Git username, use it to have generate the proper GitHub links at Readme file!
@@ -87,13 +94,13 @@ You can use the following arguments:
 Example of these extra arguments usage:
 
 ```console
-$ rcgen create -n @luisgilgb/my-cmp -a "Luis Gil Gutiérrez de la Barreda" --git-user LuisGilGB
+$ rcgen create -n @scope/my-cmp -N RealComponent -a "Author McAuthor" --git-user AuthorHasGitHub
 ```
 
 Notice that rcgen is just a shorter alias for calling the CLI tool, you can also run this generator by the react-component-generator command too:
 
 ```console
-$ react-component-generator create -n @luisgilgb/my-cmp
+$ react-component-generator create -n @scope/my-cmp
 ```
 
 ## Running a demo
