@@ -43,6 +43,7 @@ my-cmp
 │   ├── MyCmp.css
 │   └── MyCmp.jsx
 ├── .babelrc
+├── .env
 ├── .gitignore
 ├── package.json
 ├── README.md
