@@ -1,6 +1,6 @@
 {
   "name": "@luisgilgb/react-component-generator",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "CLI tool that generates the scaffolding for a React component library",
   "main": "cli.js",
   "bin": {
@@ -32,12 +32,12 @@
   },
   "homepage": "https://github.com/LuisGilGB/react-component-generator#readme",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "@luisgilgb/js-utils": "^0.3.1",
-    "chalk": "^3.0.0",
-    "fs-extra": "^8.1.0",
-    "yargs": "^15.0.2"
+    "@luisgilgb/js-utils": "^0.4.0",
+    "chalk": "^4.1.0",
+    "fs-extra": "^9.0.1",
+    "yargs": "^15.4.1"
   }
 }
